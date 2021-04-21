@@ -58,9 +58,7 @@ function findById(user_id) {
     }
    */
 
-    return db('users as u')
-    .join('roles as r', 'r.role_id', 'u.user_id')
-    .where({user_id})
+    return db('users').join('roles', 'roles.role_id', 'users.user_id').select('user_id', 'username', 'role_name').where('users.user_id', user_id).first();
 
 }
 
